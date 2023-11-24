@@ -547,30 +547,26 @@
     <a href="#top"><img id="toplogo" src="images/TOP-logo.png"></a>
 </div>
     <script>
+let slideIndex = 0;
+let slideTimer = null;
+showSlides();
 
-        let slideTimer = null
-        let slideIndex = 1
-       function moveSlide(n) {
-    let newIndex = slideIndex + n;
-    showSlides(newIndex);
-}
-
-function showSlides(newIndex) {
+function showSlides() {
     let slides = document.getElementsByClassName("slide");
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
-
-    if (newIndex < 1) {
-        newIndex = slides.length;
-    } else if (newIndex > slides.length) {
-        newIndex = 1;
+    slideIndex++;
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
     }
-
-    slideIndex = newIndex;
     slides[slideIndex - 1].style.display = "block";
     clearTimeout(slideTimer);
     slideTimer = setTimeout(showSlides, 6000);
+}
+
+function moveSlide(n) {
+    showSlides(slideIndex + n);
 }
 
       const cardButtons = document.querySelectorAll(".card button");
