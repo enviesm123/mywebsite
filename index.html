@@ -547,17 +547,17 @@
     <a href="#top"><img id="toplogo" src="images/TOP-logo.png"></a>
 </div>
     <script>
-        function moveSlide(n) {
-    showSlides(slideIndex + n); // 이동할 슬라이드 인덱스를 지정하여 showSlides 함수 호출
+       function moveSlide(n) {
+    let newIndex = slideIndex + n;
+    showSlides(newIndex);
 }
 
-function showSlides(newIndex = slideIndex) {
+function showSlides(newIndex) {
     let slides = document.getElementsByClassName("slide");
     for (let i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
 
-    // 왼쪽 이동 로직 추가
     if (newIndex < 1) {
         newIndex = slides.length;
     } else if (newIndex > slides.length) {
@@ -566,7 +566,7 @@ function showSlides(newIndex = slideIndex) {
 
     slideIndex = newIndex;
     slides[slideIndex - 1].style.display = "block";
-    clearTimeout(slideTimer); // 기존 타이머 제거
+    clearTimeout(slideTimer);
     slideTimer = setTimeout(showSlides, 6000);
 }
 
