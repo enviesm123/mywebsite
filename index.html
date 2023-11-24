@@ -276,11 +276,10 @@
             position: relative;
             display: inline-block;
             overflow: hidden;
+            transition: transform 0.3s ease;
         }
-        .card img{
-             transition: transform 0.3s ease;
-        }
-        .card:hover img{
+      
+        .card:hover{
             transform: translateY(-5px); /* 이미지를 위로 5px 이동 */
         }
         .image-button {
@@ -291,7 +290,7 @@
           opacity: 0;
           transition: opacity 0.3s ease;
         }
-        .image-container:hover .image-button {
+        .card:hover .image-button {
           opacity: 1;
         }
 
