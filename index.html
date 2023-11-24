@@ -547,28 +547,28 @@
     <a href="#top"><img id="toplogo" src="images/TOP-logo.png"></a>
 </div>
     <script>
-        let slideIndex = 0;
-        let slideTimer = null;
-        showSlides();
-
-        function showSlides() {
-            let slides = document.getElementsByClassName("slide");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {
-                slideIndex = 1;
-            }
-            slides[slideIndex - 1].style.display = "block";
-            clearTimeout(slideTimer); // 기존 타이머 제거
-            slideTimer = setTimeout(showSlides, 6000);
-        }
-
         function moveSlide(n) {
-            slideIndex += n;
-            showSlides();
-        }
+    showSlides(slideIndex + n); // 이동할 슬라이드 인덱스를 지정하여 showSlides 함수 호출
+}
+
+function showSlides(newIndex = slideIndex) {
+    let slides = document.getElementsByClassName("slide");
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // 왼쪽 이동 로직 추가
+    if (newIndex < 1) {
+        newIndex = slides.length;
+    } else if (newIndex > slides.length) {
+        newIndex = 1;
+    }
+
+    slideIndex = newIndex;
+    slides[slideIndex - 1].style.display = "block";
+    clearTimeout(slideTimer); // 기존 타이머 제거
+    slideTimer = setTimeout(showSlides, 6000);
+}
 
       const cardButtons = document.querySelectorAll(".card button");
 
