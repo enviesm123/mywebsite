@@ -208,6 +208,7 @@
         .next:hover {
             background-color: white;
             filter: brightness(80%);
+            user-select: none;
         }
 
         .prev {
@@ -233,7 +234,14 @@
 
         .search-icon {
             margin: auto;
-            height: 35px;
+            height: 45px;
+        }
+
+        .search-icon button{
+            height: 90%;
+        }
+        #search-img{
+            user-select: none;
         }
 
         .download-link {
@@ -267,7 +275,7 @@
 
         .nav{
             position: fixed; /*화면 상단에 위치*/
-            right: 10px; /* 화면 상단에 위치 */
+            left: 2200px; /* 화면 상단에 위치 */
             bottom: 0; /* 화면 상단에 위치 */
 
         }
@@ -281,6 +289,10 @@
             cursor: pointer;
             background-color: white;
             filter: brightness(80%);
+        }
+
+        .signuplogin{
+            user-select: none;
         }
 
         .signuplogin > a > img {
@@ -308,13 +320,13 @@
                 <div class="search-bar">
                     <input type="search" placeholder="검색어를 입력해주세요">
                     <div class="search-icon">
-                        <img src="images/검색돋보기.png">
+                       <button><img id="search-img" src="images/검색돋보기.png"></button>
                     </div>
                 </div>
             </div>
             <div class="signuplogin">
                 <a href="#"><img id="loginimg" src="images/로그인아이콘.png"></a>
-                <a href="#"><img id="signup" src="images/회원가입아이콘.png"></a>
+                <a href="#"><img id="signupimg" src="images/회원가입아이콘.png"></a>
             </div>
         </div>
     </div>
@@ -513,7 +525,8 @@
                 slideIndex = 1;
             }
             slides[slideIndex - 1].style.display = "block";
-            setTimeout(showSlides, 6000);
+            clearTimeout(slideTimer); // 기존 타이머 제거
+            slideTimer = setTimeout(showSlides, 6000);
         }
 
         function moveSlide(n) {
