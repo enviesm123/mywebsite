@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>정보수정</title>
+    <style>
+
+        div{
+            border: 1px solid red;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info p {
+            margin: 10px;
+            font-size: 18px;
+        }
+
+        .user-info span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .user-info input[type="text"],
+        .user-info input[type="password"] {
+            padding: 8px;
+            margin-left: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 150px;
+            font-size: 16px;
+        }
+
+        .user-info button {
+            padding: 8px 10px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .user-info button:hover {
+            background-color: #2980b9;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+
+        }
+        .input-container{
+            text-align: left;
+
+        }
+
+    </style>
+</head>
+<body>
+<h1>내정보</h1>
+<div class="user-info">
+    <div class="input-container">
+    <p><span>E-mail:</span> <input type="text" id="userInfoEmail" value="이메일" readonly></p>
+    <p><span>Password:</span> <input type="password" id="userInfoPassword" value="비밀번호" readonly> <button type="button" id="pwChangeBtn">변경</button></p>
+    <p><span>Name:</span> <input value="이름" type="text" id="userInfoName" readonly> <button type="button" id="nameChangeBtn">변경</button></p>
+    </div>
+</div>
+<div class="buttons">
+    <button id="editProfileBtn" type="button">회원정보 수정</button>
+    <button id="logoutBtn" type="button">로그아웃</button>
+</div>
+</body>
+<script>
+
+
+
+    function loadUserInfo() {
+        const inputEmail = document.querySelector("#userInfoEmail");
+        const inputPassword = document.querySelector("#userInfoPassword");
+        const inputName = document.querySelector("#userInfoName");
+
+        const savedUserInfo = localStorage.getItem('loginUser');
+        // console.log(savedUserInfo)
+        const sui = JSON.parse(savedUserInfo)
+        // console.log(sui)
+        inputEmail.value = sui.email
+        inputPassword.value = sui.password
+        inputName.value = sui.name
+
+
+    }
+
+    document.addEventListener('DOMContentLoaded', loadUserInfo);
+
+    document.getElementById('logoutBtn').addEventListener("click", () => {
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('loginUser'); // 로그인 유저 정보도 제거
+        window.location.href = "index.html";
+    });
+
+    document.querySelector("#pwChangeBtn").addEventListener("click", () => {
+        document.querySelector("#userInfoPassword").readOnly = false;
+    });
+
+    document.querySelector("#nameChangeBtn").addEventListener("click", () => {
+        document.querySelector("#userInfoName").readOnly = false;
+    });
+
+    document.querySelector("#editProfileBtn").addEventListener("click", () => {
+        const userE = document.querySelector("#userInfoEmail").value;
+        const userP = document.querySelector("#userInfoPassword").value;
+        const userN = document.querySelector("#userInfoName").value;
+
+        const updatedUser = {
+            email: userE,
+            password: userP,
+            name: userN
+        };
+
+        const userInfoString = localStorage.getItem("userInfo");
+        const userInfo = JSON.parse(userInfoString);
+
+        for (let i = 0; i < userInfo.length; i++) {
+            if (userInfo[i].email === userE) {
+                userInfo[i] = updatedUser; // 해당 이메일을 가진 사용자 정보를 새 정보로 교체
+                localStorage.setItem('userInfo', JSON.stringify(userInfo));
+
+                // 수정된 정보가 현재 로그인한 사용자와 일치하는 경우에만 loginUser를 갱신
+                const currentUser = JSON.parse(localStorage.getItem('loginUser'));
+                if (currentUser.email === userE) {
+
+                    localStorage.setItem('loginUser', JSON.stringify(updatedUser));
+                }
+
+                alert('변경 완료!');
+                goBack()
+                break; // 수정이 완료되면 반복문을 빠져나옵니다.
+            }
+        }
+    });
+
+    function goBack() {
+        window.history.back();
+    }
+
+    console.log(JSON.parse(localStorage.getItem('loginUser')))
+
+</script>
+</body>
+</html>
