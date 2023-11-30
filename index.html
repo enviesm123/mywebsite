@@ -786,21 +786,7 @@
 
 
 
-    // 로그인 여부를 확인하여 회원가입과 로그인버튼 숨기기
-    const isLoggedIn = localStorage.getItem('isLoggedIn')
-    // 해당 버튼 요소를 찾습니다.
-    const loginButton = document.getElementById('loginBtn')
-    const signupButton = document.getElementById('signupBtn')
 
-    if (isLoggedIn) {
-        // 로그인 상태인 경우 버튼을 숨깁니다.
-        loginButton.style.display = 'none'
-        signupButton.style.display = 'none'
-    } else {
-        // 비로그인 상태인 경우 버튼을 보여줍니다.
-        loginButton.style.display = 'block'
-        signupButton.style.display = 'block'
-    }
 
     // 로그아웃 기능
 

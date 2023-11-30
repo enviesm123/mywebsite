@@ -100,6 +100,13 @@
                     password: userInfo[i].password,
                     name: userInfo[i].name
                 };
+                const loggedInUserInfo = {
+                    email: userInfo[i].email,
+                    name: userInfo[i].name
+                };
+
+                sessionStorage.setItem('loggedInUserInfo', JSON.stringify(loggedInUserInfo));
+
                 localStorage.setItem('loginUser', JSON.stringify(loginUser));
                 isCredentialsCorrect = true;
                 break; // 올바른 자격 증명을 찾으면 반복문을 빠져나옵니다.
