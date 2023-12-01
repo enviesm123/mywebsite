@@ -577,45 +577,51 @@
 </div>
 <script>
 
-    const gameList = [
+    let gameList = [
         {
             name: '스타크래프트',
             description: '블리자드의 역작!!',
-            imageUrl: 'https://images.chosun.com/resizer/j3r8uIvU7AeIYsSxqmm18518_N4=/616x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/SWI44PT6GJDSLCJHJAYCGNWZGM.png',
-            keyword: ['고전게임', '테란', '저그', '프로토스', 'starcraft', 'star', '전체', 'tmxkzmfovmxm', 'tmxk']
+            imageUrl: 'https://platum.kr/wp-content/uploads/2017/08/starcraft-remaster.jpg',
+            keyword: ['고전게임', '테란', '저그', '프로토스', 'starcraft', 'star', '전체', 'tmxkzmfovmxm', 'tmxk'],
+            review: []
         },
         {
             name: '리그오브레전드',
             description: '세계 1위게임!!',
             imageUrl: 'https://www.leagueoflegends.com/static/logo-1200-04b3cefafba917c9c571f9244fd28a1e.png',
-            keyword: ['페이커', '전체', 'AOS', '롤', 'lol', 'fhf', 'flrmdhqmfpwjsem', 'flrm', 'league', 'leagueoflegend']
+            keyword: ['페이커', '전체', 'AOS', '롤', 'lol', 'fhf', 'flrmdhqmfpwjsem', 'flrm', 'league', 'leagueoflegend'],
+            review: []
         },
         {
             name: '이터널리턴',
             description: '지금바로 다운로두',
             imageUrl: 'https://t1.daumcdn.net/gamepub/ui-contents/service/er/home/v1/images/img-og.jpg',
-            keyword: ['전체', '배틀로얄', '이리', 'dlfl', 'dlxjsjfflxjs', 'eternalreturn', 'eternal']
+            keyword: ['전체', '배틀로얄', '이리', 'dlfl', 'dlxjsjfflxjs', 'eternalreturn', 'eternal'],
+            review: []
         },
         {
             name: '로스트아크',
             description: '기습숭배!! 금강선만세',
-            imageUrl: 'https://www.sisajournal-e.com/news/photo/first/201811/img_191321_1.png',
-            keyword: ['전체', 'rpg', '알피지', '금강선', '로아', 'fhdk', 'fhtmxmdkzm', 'lost', 'lostark']
+            imageUrl: 'https://www.paxetv.com/news/photo/202007/97107_69285_582.jpg',
+            keyword: ['전체', 'rpg', '알피지', '금강선', '로아', 'fhdk', 'fhtmxmdkzm', 'lost', 'lostark'],
+            review: []
         },
         {
             name: '메이플스토리',
             description: '메이플스토리! 재밌어요!!',
             imageUrl: 'https://image.ytn.co.kr/general/jpg/2021/0311/202103110915014429_d.jpg',
-            keyword: ['전체', 'rpg', '알피지', '강원기', '메이플', 'apdlvmf', 'apdlvmftmxhfl', 'maple', 'maplestory']
+            keyword: ['전체', 'rpg', '알피지', '강원기', '메이플', 'apdlvmf', 'apdlvmftmxhfl', 'maple', 'maplestory'],
+            review: []
         },
         {
             name: '피파온라인4',
             description: 'FIFA Online 지금바로 다운로드!!',
             imageUrl: 'https://fo-newscenter.s3.ap-northeast-2.amazonaws.com/sportal-korea/extract/2022/12/24/SK007_20221224_140301.jpg',
-            keyword: ['전체', 'sports', '축구', '스포츠', '피파', '피파4', '피파온라인', 'vlvk', 'vlvkdhsfkdls', 'fifa', 'fifaonline']
+            keyword: ['전체', 'sports', '축구', '스포츠', '피파','피파4','피파온라인', 'vlvk', 'vlvkdhsfkdls', 'fifa', 'fifaonline'],
+            review: []
         },
-        // ... 추가적인 검색 결과
     ]
+    localStorage.setItem('gameList', JSON.stringify(gameList));
 
     const cards = document.querySelectorAll('.card');
 
