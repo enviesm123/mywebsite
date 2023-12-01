@@ -621,8 +621,7 @@
             review: []
         },
     ]
-    localStorage.setItem('gameList', JSON.stringify(gameList));
-
+    // localStorage.setItem('gameList', JSON.stringify(gameList));
     const cards = document.querySelectorAll('.card');
 
     cards.forEach((card, index) => {
@@ -690,72 +689,6 @@
     });
 
 
-    // const cardButtons = document.querySelectorAll(".card button");
-    //
-    // cardButtons.forEach((button, index) => {
-    //     button.addEventListener('click', () => {
-    //         let url = ''; // 링크 주소 변수 초기화
-    //
-    //         // 버튼에 따라 다른 링크 주소 설정
-    //         switch (index) {
-    //             case 0:
-    //                 url = "https://us.shop.battle.net/ko-kr/family/starcraft-remastered"
-    //                 break;
-    //             case 1:
-    //                 url = "https://www.leagueoflegends.com/ko-kr/"
-    //                 break;
-    //             case 2:
-    //                 url = "https://lostark.game.onstove.com/Main"
-    //                 break;
-    //             case 3:
-    //                 url = "https://maplestory.nexon.com/Home/Main"
-    //                 break;
-    //             case 4:
-    //                 url = "https://fconline.nexon.com/main/index"
-    //                 break;
-    //             case 5:
-    //                 url = "https://playeternalreturn.com/main?hl=ko-KR"
-    //                 break;
-    //         }
-    //
-    //         window.location.href = url
-    //     });
-    // });
-    //
-    //
-    // const cards = document.querySelectorAll('.card');
-    //
-    // cards.forEach((card, index) => {
-    //     card.addEventListener('click', () => {
-    //         let url = ''; // 링크 주소 변수 초기화
-    //
-    //         // 버튼에 따라 다른 링크 주소 설정
-    //         switch (index) {
-    //             case 0:
-    //                 url = "detail-game.html?gameName=스타크래프트"
-    //                 break;
-    //             case 1:
-    //                 url = "detail-game.html?gameName=리그오브레전드"
-    //                 break;
-    //             case 2:
-    //                 url = "detail-game.html?gameName=로스트아크"
-    //                 break;
-    //             case 3:
-    //                 url = "detail-game.html?gameName=메이플스토리"
-    //                 break;
-    //             case 4:
-    //                 url = "detail-game.html?gameName=피파온라인4"
-    //                 break;
-    //             case 5:
-    //                 url = "detail-game.html?gameName=이터널리턴"
-    //                 break;
-    //
-    //         }
-    //
-    //         window.location.href = url
-    //     });
-    // });
-
 
     window.onload = function () {
         const savedUserData = localStorage.getItem('userInfo')
@@ -765,6 +698,21 @@
             console.log('저장된 사용자 정보:', userData)
         }
         document.querySelector('.search-bar input').value = ''
+
+        let storedGameList = JSON.parse(localStorage.getItem('gameList'));
+
+        // 저장된 데이터가 없으면 기본 데이터를 저장
+        if (!storedGameList) {
+            storedGameList = gameList;
+            localStorage.setItem('gameList', JSON.stringify(storedGameList));
+        } else {
+            // 저장된 데이터가 있으면 해당 데이터를 사용
+            // 예시: console.log(storedGameList);
+        }
+
+        // 메인 화면에 저장된 데이터를 사용하여 view 초기화
+        // 예시: initializeView(storedGameList);
+
     }
 
 
